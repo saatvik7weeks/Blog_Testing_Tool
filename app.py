@@ -78,7 +78,6 @@ if url:
             st.write(f"🌍 External links (adjusted): {external_link_count} ✅")
         else:
             st.write(f"🌍 External links (adjusted): {external_link_count} ❌")
-        
 
         with st.expander("🔎 Internal Links"):
             for link in internal_links:
@@ -90,7 +89,10 @@ if url:
 
         with st.expander("🆕 Links that open in new tab (filtered)"):
             for link in new_tab_links:
-                st.write(link)
+                if link.startswith("https://www.bnxt.ai/"):
+                    st.write(f"{link} ❌")
+                else:
+                    st.write(f"{link} ✅")
 
         expected_tables = st.number_input("Enter expected number of tables", min_value=0, step=1)
         tables = soup.find_all("table")
