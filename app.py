@@ -35,8 +35,15 @@ if url:
         img_diff = img_count - base_images
         link_diff = link_count - base_links
 
-        st.write(f"📸 Number of images: {img_diff}")
-        st.write(f"🔗 Number of links: {link_diff}")
+        if img_diff >= 2:
+            st.write(f"📸 Number of images: {img_diff} ✅")
+        else:
+            st.write(f"📸 Number of images: {img_diff} ❌")
+
+        if link_diff >= 3:
+            st.write(f"🔗 Number of links: {link_diff} ✅")
+        else:
+            st.write(f"🔗 Number of links: {link_diff} ❌")
 
         if img_count - img_diff == base_images:
             st.write("✅ Call to action : 3")
@@ -67,7 +74,11 @@ if url:
         external_link_count = len(external_links) - 12
 
         st.write(f"🏠 Internal links (adjusted): {internal_link_count}")
-        st.write(f"🌍 External links (adjusted): {external_link_count}")
+        if external_link_count >= 3:
+            st.write(f"🌍 External links (adjusted): {external_link_count} ✅")
+        else:
+            st.write(f"🌍 External links (adjusted): {external_link_count} ❌")
+        
 
         with st.expander("🔎 Internal Links"):
             for link in internal_links:
